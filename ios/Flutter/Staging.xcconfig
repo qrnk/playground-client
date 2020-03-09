@@ -1,0 +1,15 @@
+//
+//  Staging.xcconfig
+//  Runner
+//
+//  Created by Daisuke Okazaki on 2020/03/09.
+//  Copyright © 2020 The Chromium Authors. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+PRODUCT_BUNDLE_IDENTIFIER=jp.qrnk.flutter.playground.staging
+DISPLAY_NAME=SQRANKPG
+PRODUCT_NAME=Runner
+FLUTTER_TARGET=lib/main_staging.dart
