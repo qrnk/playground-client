@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:logger/logger.dart';
 import 'package:package_info/package_info.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
-
   MainScreen({Key key}) : super(key: key);
 
   @override
@@ -20,7 +21,7 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
 
   @override
   void initState() {
-    print('MainScreen.initState()');
+    Provider.of<Logger>(context, listen: false).d('MainScreen.initState()');
 
     PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
       setState(() {
@@ -36,7 +37,7 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    print('MainScreen.build()');
+    Provider.of<Logger>(context, listen: false).d('MainScreen.build()');
 
     return Container(
       color: Colors.red,
