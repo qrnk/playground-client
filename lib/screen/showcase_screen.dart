@@ -3,49 +3,36 @@ import 'package:flutter/widgets.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
-class AboutScreen extends StatefulWidget {
-  AboutScreen({Key key}) : super(key: key);
+class ShowcaseScreen extends StatefulWidget {
+  ShowcaseScreen({Key key}) : super(key: key);
 
   @override
-  _AboutScreenState createState() => _AboutScreenState();
+  _ShowcaseScreenState createState() => _ShowcaseScreenState();
 }
 
-class _AboutScreenState extends State<AboutScreen> with WidgetsBindingObserver {
+class _ShowcaseScreenState extends State<ShowcaseScreen> with WidgetsBindingObserver {
   final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
 
   ScrollController _scrollController = ScrollController();
 
   bool _isScreenTransiting = false;
-  bool _isVisibleTitle = false;
 
   @override
   void initState() {
-    Provider.of<Logger>(context, listen: false).d('AboutScreen.initState()');
+    Provider.of<Logger>(context, listen: false).d('ShowcaseScreen.initState()');
 
     Future.delayed(const Duration(milliseconds: 500), () {
       setState(() {
         _isScreenTransiting = true;
       });
     });
-    
-    _scrollController.addListener(() {
-      final maxScrollExtent = _scrollController.position.maxScrollExtent;
-      final currentPosition = _scrollController.position.pixels;
-      print('maxScrollExtent : $maxScrollExtent');
-      print('currentPosition : $currentPosition');
-      if (maxScrollExtent > 0 && 105.0 <= currentPosition) {
-        setState(() => _isVisibleTitle = true);
-      } else {
-        setState(() => _isVisibleTitle = false);
-      }
-    });
-    
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<Logger>(context, listen: false).d('AboutScreen.build()');
+    Provider.of<Logger>(context, listen: false).d('ShowcaseScreen.build()');
 
     return Scaffold(
         key: _globalKey,
@@ -67,15 +54,41 @@ class _AboutScreenState extends State<AboutScreen> with WidgetsBindingObserver {
                                   alignment: Alignment.topLeft,
                                   child: FractionallySizedBox(
                                     widthFactor: 0.5,
-                                    child: Image.asset('assets/image/about_title.png',),
+                                    child: Image.asset(
+                                      'assets/image/showcase_title.png',
+                                    ),
                                   )
                               ),
                             ),
-                            SizedBox(height: 50,),
                             Container(
                               width: double.infinity,
-                              height: 1500,
-                              color: Colors.white,
+                              height: 150,
+                              color: Colors.red,
+                            ),
+                            Container(
+                              width: double.infinity,
+                              height: 150,
+                              color: Colors.orange,
+                            ),
+                            Container(
+                              width: double.infinity,
+                              height: 150,
+                              color: Colors.yellow,
+                            ),
+                            Container(
+                              width: double.infinity,
+                              height: 150,
+                              color: Colors.green,
+                            ),
+                            Container(
+                              width: double.infinity,
+                              height: 150,
+                              color: Colors.blue,
+                            ),
+                            Container(
+                              width: double.infinity,
+                              height: 150,
+                              color: Colors.purple,
                             ),
                           ],
                         ),
@@ -109,21 +122,6 @@ class _AboutScreenState extends State<AboutScreen> with WidgetsBindingObserver {
                                 ),
                               )),
                         ),
-                        Visibility(
-                          visible: _isVisibleTitle,
-                          child: SafeArea(
-                            child: Align(
-                                alignment: Alignment.topCenter,
-                                child: Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                  child: SizedBox(
-                                    height: 22.0,
-                                    child: Image.asset('assets/image/about_title.png',),
-                                  ),
-                                )
-                            ),
-                          ),
-                        )
                       ]
                       )
                   ),

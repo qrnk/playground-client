@@ -2,7 +2,11 @@
 import 'package:flutter/widgets.dart';
 
 class FadeInWidget extends StatefulWidget {
-  FadeInWidget({@required this.child, this.delay, this.duration, Key key}) : super(key: key);
+  FadeInWidget({
+    @required this.child,
+    this.delay = const Duration(milliseconds: 1),
+    this.duration = const Duration(seconds: 1),
+    Key key}) : super(key: key);
 
   final Widget child;
   final Duration delay;
@@ -22,7 +26,7 @@ class _FadeInWidgetState extends State<FadeInWidget> {
   @override
   void initState() {
 
-    Future.delayed(widget.delay == null ? const Duration(milliseconds: 1) : widget.delay, () {
+    Future.delayed(widget.delay, () {
       _changeOpacity();
     });
 
@@ -33,7 +37,7 @@ class _FadeInWidgetState extends State<FadeInWidget> {
   Widget build(BuildContext context) {
     return AnimatedOpacity(
       opacity: opacityLevel,
-      duration: widget.duration == null ? const Duration(seconds: 1) : widget.duration,
+      duration: widget.duration,
       child: widget.child,
     );
   }
